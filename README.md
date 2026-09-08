@@ -105,14 +105,20 @@ of the tree.
 |---|---|
 | `kernelgrove_amd64.deb` | The Linux package. The name carries no version, so `releases/latest/download/kernelgrove_amd64.deb` always points at the current build. |
 | `kernelgrove-win64-setup.exe` | The Windows installer. Versionless for the same reason. |
-| `bindings.db` | The device-tree bindings database, built from the kernel YAML bindings. |
-| `manifest.json` | Version, URL, `sha256` and size of `bindings.db`. KernelGrove reads it to fetch and verify the database. |
+| `manifest.json` | Which database this version uses, where it is and its `sha256`. KernelGrove reads it on first run to fetch and verify the database. |
+
+The database is **not** in the application release: it does not change from one
+version to the next, so it is published on its own and each release just points
+at it. The current one is
+[db-v1](https://github.com/serg4life/kernelgrove-releases/releases/tag/db-v1);
+a rebuilt database goes to the next number, so an already published version
+keeps pointing at the database it was tested against.
 
 This repository carries distribution assets only — the application source lives
 elsewhere. The [tools-v1](https://github.com/serg4life/kernelgrove-releases/releases/tag/tools-v1)
-tag is separate and pinned: it holds `dtc` and the preprocessor that the Windows
-installer downloads, with their licences and the `dtc` source. The installer
-bakes in each `sha256`, so that tag must not move.
+tag is separate and pinned the same way: it holds `dtc` and the preprocessor
+that the Windows installer downloads, with their licences and the `dtc` source.
+The installer bakes in each `sha256`, so that tag must not move.
 
 `bindings.db` is built from the Linux kernel's own device tree bindings and
 sources, which keep their own licences (GPL-2.0 and dual GPL/MIT/BSD variants).
