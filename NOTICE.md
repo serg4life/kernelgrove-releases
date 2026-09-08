@@ -1,8 +1,8 @@
 # Notice — `bindings.db`
 
 `bindings.db` is published as a release asset of this repository and is
-downloaded by DTstudio on first run. It is not part of the DTstudio
-application and it is not covered by the DTstudio End User Licence Agreement.
+downloaded by KernelGrove on first run. It is not part of the KernelGrove
+application and it is not covered by the KernelGrove End User Licence Agreement.
 
 ## Third-party content
 
@@ -14,8 +14,8 @@ The database is built from the [Linux kernel](https://www.kernel.org/) tree
 The kernel files stored in the database keep their own licences — GPL-2.0 and
 variants, several of them dual-licensed with MIT or BSD — as stated in the
 `SPDX-License-Identifier` header of each file, which is preserved inside the
-database and comes out with the file whenever DTstudio extracts it. **Those
-licences prevail over anything in this notice or in the DTstudio agreement,
+database and comes out with the file whenever KernelGrove extracts it. **Those
+licences prevail over anything in this notice or in the KernelGrove agreement,
 and nothing here restricts a right they grant you.** Where a file offers a
 choice of licences, you may take either.
 
@@ -35,12 +35,12 @@ each file.
 The licences above cover the kernel files. They do not cover **this
 database** — its selection and arrangement of that material, its schema, its
 processed binding schemas, its hardware index and the rest of the work that
-turns a kernel tree into it. That compilation is the work of the DTstudio
+turns a kernel tree into it. That compilation is the work of the KernelGrove
 author, © 2026, all rights reserved, and in the European Union it is also
 protected as a database under Directive 96/9/EC, independently of the licence
 of its contents.
 
-`bindings.db` is supplied for use with DTstudio. Without written permission
+`bindings.db` is supplied for use with KernelGrove. Without written permission
 you may not extract or re-use a substantial part of it — by volume or by
 value — for anything else, nor redistribute it, republish it, or make it
 available as a dataset, service or product of your own, whether whole,
@@ -52,6 +52,6 @@ the kernel tree they come from.
 
 ## The rest of this repository
 
-The README, the screenshots under `assets/` and the DTstudio packages are part
-of DTstudio and are covered by its End User Licence Agreement, shown on first
+The README, the screenshots under `assets/` and the KernelGrove packages are part
+of KernelGrove and are covered by its End User Licence Agreement, shown on first
 run and available from *Help → Licence agreement* inside the application.
