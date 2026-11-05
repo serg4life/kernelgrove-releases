@@ -1,134 +1,21 @@
-<h1 align="center">KernelGrove</h1>
+<h1 align="center">KernelGrove — earlier releases</h1>
 
-<p align="center"><strong>Edit Linux Device Trees without fighting the syntax.</strong></p>
+> **KernelGrove has moved to [serg4life/KernelGrove](https://github.com/serg4life/KernelGrove).**
+> It is now open source (Apache-2.0), and new versions — from 1.0b4 on — are
+> published there: [latest release](https://github.com/serg4life/KernelGrove/releases/latest).
 
-<p align="center">
-  <a href="https://github.com/serg4life/kernelgrove-releases/releases/latest"><img alt="Latest release" src="https://img.shields.io/github/v/release/serg4life/kernelgrove-releases?include_prereleases&label=latest&color=6d5bff"></a>
-  <img alt="Platform" src="https://img.shields.io/badge/platform-Linux%20%C2%B7%20Windows-6d5bff">
-  <img alt="Price" src="https://img.shields.io/badge/beta-free-6d5bff">
-  <a href="https://dt-studio.dev"><img alt="Website" src="https://img.shields.io/badge/website-dt--studio.dev-6d5bff"></a>
-</p>
+This repository is archived. It only keeps the assets of the first betas,
+1.0b1–1.0b3, and it stays online because those versions still depend on it:
 
-<p align="center">
-  <a href="https://github.com/serg4life/kernelgrove-releases/releases/latest/download/kernelgrove_amd64.deb"><strong>⬇ Download for Linux (.deb)</strong></a>
-  &nbsp;·&nbsp;
-  <a href="https://github.com/serg4life/kernelgrove-releases/releases/latest/download/kernelgrove-win64-setup.exe"><strong>⬇ Download for Windows (.exe)</strong></a>
-  &nbsp;·&nbsp;
-  <a href="https://dt-studio.dev">Official site</a>
-</p>
-
-![The KernelGrove editor: a device tree source with the problems list below and the node inspector on the right](assets/screenshot-editor.png)
-
-KernelGrove is a desktop app for Linux Device Trees, and runs on Linux and Windows. Open a `.dts`, see what every
-node actually needs, fix what's wrong before it reaches the board, draw the tree
-as a graph, and build overlays — all checked live against the kernel's own
-bindings.
-
-It is in **beta and completely free**. No account, no telemetry: your files
-never leave your machine.
-
-## Install
-
-### Linux (x86_64)
-
-```bash
-wget https://github.com/serg4life/kernelgrove-releases/releases/latest/download/kernelgrove_amd64.deb
-sudo apt install ./kernelgrove_amd64.deb
-```
-
-Then launch **KernelGrove** from the applications menu, or run `kernelgrove`.
-
-**Requirements:** a Debian or Ubuntu based distribution on x86_64, and
-`libxcb-cursor0` (pulled in by `apt`). `device-tree-compiler` and `cpp` come in
-as recommends and are what compiling and decompiling use; everything else works
-without them.
-
-### Windows (x64)
-
-Download and run
-[`kernelgrove-win64-setup.exe`](https://github.com/serg4life/kernelgrove-releases/releases/latest/download/kernelgrove-win64-setup.exe).
-It installs per user, so it does not ask for administrator. The setup is
-unsigned, so SmartScreen warns the first time (More info → Run anyway).
-
-**Requirements:** Windows 10 1803 or later, x64. Windows has no package manager
-to bring in `dtc` and a preprocessor the way `apt` does, so the installer offers
-them as an optional **Compilation tools** component and fetches them from
-[tools-v1](https://github.com/serg4life/kernelgrove-releases/releases/tag/tools-v1).
-Skip it and everything except compiling and decompiling still works.
-
-The bindings database (~80 MB) is downloaded on first run on both platforms — no
-need to fetch it by hand.
-
-## What you can do with it
-
-### Validation as you type
-
-Errors and warnings the moment you stop typing, each with the line, what's wrong
-and what to write instead — from a missing required property to a unit-address
-that doesn't match its `reg`. Put the cursor in a node and the inspector says
-what its `compatible` is, which properties it requires, which it accepts, their
-types, and the kernel version from which the device is supported.
-
-### The tree, drawn
-
-![Node graph: the BCM2711 SoC card with its controllers, connected to PCI, Bluetooth, Wi-Fi and MDIO nodes](assets/screenshot-graph.png)
-
-Your device tree as a graph: the SoC with its controllers, and what hangs off
-each one. Jump between the graph and the source without losing your place.
-
-### A catalogue of hardware…
-
-![The catalogue window listing SoCs and boards with vendor, architecture, cores and RAM](assets/screenshot-catalogue.png)
-
-3,600+ SoCs and boards to search by name, vendor, architecture, cores or RAM —
-open any of them straight into the editor or the graph instead of hunting
-through a kernel tree.
-
-### …and of bindings
-
-![The bindings catalogue filtered to sensors, showing vendor, subsystem and the binding that documents each compatible](assets/screenshot-bindings.png)
-
-Next to it, 25,000+ device bindings searchable by vendor and device type: what
-the kernel documents about a part, without leaving the editor to grep for it.
-
-### Overlays, built and compiled
-
-Click the node you want to change, tick the properties, and the overlay writes
-itself. Validate it against the base tree — a target that doesn't exist is
-caught here, not on the board. Export it as `.dtso`, compile it to `.dtbo`,
-decompile a `.dtb` back to source, or take just the DTS fragment or a JSON model
-of the tree.
-
-## What is in a release
-
-| Asset | What it is |
+| Release | Why it is kept |
 |---|---|
-| `kernelgrove_amd64.deb` | The Linux package. The name carries no version, so `releases/latest/download/kernelgrove_amd64.deb` always points at the current build. |
-| `kernelgrove-win64-setup.exe` | The Windows installer. Versionless for the same reason. |
-| `manifest.json` | Which database this version uses, where it is and its `sha256`. KernelGrove reads it on first run to fetch and verify the database. |
+| `v1.0b1` – `v1.0b3` | The installers of those versions. |
+| `db-v1` | The bindings database. Versions 1.0b1–1.0b3 read `releases/latest/download/manifest.json` from this repository on first run, and that manifest points here. |
+| `tools-v1` | `dtc` and the preprocessor that the Windows installers of those versions download, with their licences and the `dtc` source. |
 
-The database is **not** in the application release: it does not change from one
-version to the next, so it is published on its own and each release just points
-at it. The current one is
-[db-v1](https://github.com/serg4life/kernelgrove-releases/releases/tag/db-v1);
-a rebuilt database goes to the next number, so an already published version
-keeps pointing at the database it was tested against.
-
-This repository carries distribution assets only — the application source lives
-elsewhere. The [tools-v1](https://github.com/serg4life/kernelgrove-releases/releases/tag/tools-v1)
-tag is separate and pinned the same way: it holds `dtc` and the preprocessor
-that the Windows installer downloads, with their licences and the `dtc` source.
-The installer bakes in each `sha256`, so that tag must not move.
+Nothing here will be updated. To install KernelGrove, use the
+[new repository](https://github.com/serg4life/KernelGrove/releases/latest).
 
 `bindings.db` is built from the Linux kernel's own device tree bindings and
 sources, which keep their own licences (GPL-2.0 and dual GPL/MIT/BSD variants).
-The database itself — its compilation, schemas and index — is KernelGrove's own
-work and is supplied for use with the application. See [NOTICE.md](NOTICE.md).
-
-## Something broken?
-
-It is a beta: expect rough edges, and tell us what breaks. A device tree that
-doesn't open, a check that fires when it shouldn't, a message that makes no
-sense — that is exactly what a beta is for.
-
-**[support@dt-studio.dev](mailto:support@dt-studio.dev)** · [dt-studio.dev](https://dt-studio.dev)
+See [NOTICE.md](NOTICE.md).
